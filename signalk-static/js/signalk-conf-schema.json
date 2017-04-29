@@ -1346,6 +1346,125 @@
               }
             }
           }
+        },
+        "propulsion": {
+          "id": "http://jsonschema.net/signalk/config/propulsion",
+          "type": "object",
+          "additionalProperties": false,
+          "title": "Propulsion",
+          "name": "propulsion",
+          "format": "table",
+          "properties": {
+            "engine": {
+              "id": "http://jsonschema.net/signalk/config/propulsion/engine",
+              "type": "object",
+              "additionalProperties": false,
+              "title": "Engine",
+              "name": "engine",
+              "format": "grid",
+              "properties": {
+                "coolantTemperature": {
+                  "id": "http://jsonschema.net/signalk/config/propulsion/engine/coolantTemperature",
+                  "type": "object",
+                  "additionalProperties": false,
+                  "title": "CoolantTemperature",
+                  "description": "Coolant Temperature properties, units and alarms.",
+                  "name": "coolantTemperature",
+                  "properties": {
+                    "meta": {
+                      "id": "http://jsonschema.net/signalk/config/propulsion/engine/coolantTemperature/meta",
+                      "type": "object",
+                      "format": "grid",
+                      "additionalProperties": false,
+                      "title": "Engine Temperature Units and Alarms specification",
+                      "name": "meta",
+                      "properties": {
+                        "alarmMethod": {
+                          "id": "http://jsonschema.net/signalk/config/propulsion/engine/coolantTemperature/meta/alarmMethod",
+                          "type": "string",
+                          "additionalProperties": false,
+                          "title": "Engine Temperature Alarm Method",
+                          "description": "The method used to signal an Engine Temperature alarm",
+                          "name": "alarmMethod",
+                          "default": "visual",
+                          "enum": [
+                            "visual",
+                            "sound"
+                          ]
+                        },
+                        "warnMethod": {
+                          "id": "http://jsonschema.net/signalk/config/propulsion/engine/coolantTemperature/meta/warnMethod",
+                          "type": "string",
+                          "additionalProperties": false,
+                          "title": "Engine Temprature Warning Method",
+                          "description": "The method used to signal an Engine Temperature warning",
+                          "name": "warnMethod",
+                          "default": "visual",
+                          "enum": [
+                            "visual",
+                            "sound"
+                          ]
+                        },
+                        "userUnit": {
+                          "id": "http://jsonschema.net/signalk/config/propulsion/engine/coolantTemperature/meta/userUnit",
+                          "type": "string",
+                          "additionalProperties": false,
+                          "title": "Engine Temperature User Unit",
+                          "description": "User units for depth display and transducer offsets",
+                          "name": "userUnit",
+                          "default": "F",
+                          "enum": [
+                            "C",
+                            "F"
+                          ]
+                        },
+                        "zones": {
+                          "id": "http://jsonschema.net/signalk/config/environment/depth/meta/zones",
+                          "type": "array",
+                          "minItems": 2,
+                          "maxItems": 2,
+                          "uniqueItems": true,
+                          "additionalItems": false,
+                          "title": "Depth Zones",
+                          "format": "grid",
+                          "description": "Ranges for the depth alarms.",
+                          "name": "zones",
+                          "items": {
+                            "id": "http://jsonschema.net/signalk/config/environment/depth/meta/zones/0",
+                            "type": "object",
+                            "title": "Zone",
+                            "format": "grid",
+                            "default": "",
+                            "headerTemplate": "{{ self.state }}  zone",
+                            "properties": {
+                              "lower": {
+                                "type": "number",
+                                "description": "The lower bound of the zone."
+                              },
+                              "upper": {
+                                "type": "number",
+                                "description": "The upper bound of the zone."
+                              },
+                              "state": {
+                                "type": "string",
+                                "options": {
+                                  "hidden": true
+                                }
+                              },
+                              "message": {
+                                "type": "string",
+                                "description": "Depth reading between the lower and upper bounds will trigger an alarm. or warning"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
       }
     }
