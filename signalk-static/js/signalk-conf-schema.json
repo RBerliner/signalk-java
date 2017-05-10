@@ -1171,7 +1171,7 @@
           "title": "Navigation UI Settings",
           "description": "Navigation measurement units.",
           "name": "navigation",
-          "format": "grid",
+          "format": "table",
           "properties": {
             "meta": {
               "id": "http://jsonschema.net/signalk/config/navigation/meta",
@@ -1179,23 +1179,23 @@
               "additionalProperties": false,
               "title": "Configure Speed/Distance Units",
               "name": "meta",
-              "format": "grid",
+              "format": "table",
               "properties": {
                 "sogDisplayUnit": {
                   "id": "http://jsonschema.net/signalk/config/navigation/meta/sogDisplayUnit",
                   "type": "string",
                   "additionalProperties": false,
-                  "title": "Speed Over Ground/ Distance Display Unit",
-                  "description": "Units to be used for display of speed over ground and distance measurements",
+                  "title": "Speed Over Ground User Unit",
+                  "description": "Units to be used for display of speed over ground",
                   "name": "sogDisplayUnit",
-                  "default": "Kt : n.m.",
+                  "default": "Kt",
                   "enum": [
-                    "m/s : m",
-                    "km/hr : km",
-                    "mi/hr : mi",
-                    "Kt : n.m."
+                    "m/s",
+                    "km/hr",
+                    "mi/hr",
+                    "Kt"
                   ]
-                },
+                },			
                 "stwDisplayUnit": {
                   "id": "http://jsonschema.net/signalk/config/navigation/meta/stwDisplayUnit",
                   "type": "string",
@@ -1208,9 +1208,20 @@
                     "m/s",
                     "km/hr",
                     "mi/hr",
-                    "Kt "
+                    "Kt"
                   ]
-                }
+                },
+                "compassOffset": {
+                  "id": "http://jsonschema.net/signalk/config/navigation/meta/compassOffset",
+                  "type": "number",
+                  "additionalProperties": false,
+                  "title": "Electronic Compass Offset",
+                  "description": "Compass offset in degrees. Compass reading + compassOffset = magnetic heading. If there is no electronic compass, this value must be 0.",
+                  "name": "compassOffset",
+                  "default": 0,
+				  "minimum": -180,
+				  "maximum": 180
+                }			
               }
             }
           }
@@ -1419,15 +1430,15 @@
                           ]
                         },
                         "zones": {
-                          "id": "http://jsonschema.net/signalk/config/environment/depth/meta/zones",
+                          "id": "http://jsonschema.net/signalk/config/propulsion/engine/coolantTemperature/meta/zones",
                           "type": "array",
                           "minItems": 2,
                           "maxItems": 2,
                           "uniqueItems": true,
                           "additionalItems": false,
-                          "title": "Depth Zones",
+                          "title": "Engine Temperature Zones",
                           "format": "grid",
-                          "description": "Ranges for the depth alarms.",
+                          "description": "Ranges for the engine temperature alarms.",
                           "name": "zones",
                           "items": {
                             "id": "http://jsonschema.net/signalk/config/environment/depth/meta/zones/0",
@@ -1453,7 +1464,7 @@
                               },
                               "message": {
                                 "type": "string",
-                                "description": "Depth reading between the lower and upper bounds will trigger an alarm. or warning"
+                                "description": "Engine temperature reading between the lower and upper bounds will trigger an alarm. or warning"
                               }
                             }
                           }
