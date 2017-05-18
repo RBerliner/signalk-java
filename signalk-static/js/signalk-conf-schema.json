@@ -1195,12 +1195,12 @@
                     "mi/hr",
                     "Kt"
                   ]
-                },			
+                },
                 "stwDisplayUnit": {
                   "id": "http://jsonschema.net/signalk/config/navigation/meta/stwDisplayUnit",
                   "type": "string",
                   "additionalProperties": false,
-                  "title": "Speed Through Water Display Unit",
+                  "title": "Speed Through Water User Unit",
                   "description": "Units to be used for display of speed through water",
                   "name": "stwDisplayUnit",
                   "default": "Kt",
@@ -1219,9 +1219,9 @@
                   "description": "Compass offset in degrees. Compass reading + compassOffset = magnetic heading. If there is no electronic compass, this value must be 0.",
                   "name": "compassOffset",
                   "default": 0,
-				  "minimum": -180,
-				  "maximum": 180
-                }			
+                  "minimum": -180,
+                  "maximum": 180
+                }
               }
             }
           }
@@ -1351,6 +1351,38 @@
                           }
                         }
                       }
+                    },
+                    "sparkline": {
+                      "id": "http://jsonschema.net/signalk/config/environment/depth/meta/sparkline",
+                      "type": "object",
+                      "additionalProperties": false,
+                      "title": "Depth Sparkline.",
+                      "description": "Configuration",
+                      "format": "grid",
+                      "name": "sparkline",
+                      "properties": {
+                        "points": {
+                          "id": "http://jsonschema.net/signalk/config/environment/depth/meta/sparkline/points",
+                          "type": "number",
+                          "additionalProperties": false,
+                          "title": "Sparkline points.",
+                          "description": "The number of values displayed in the depth sparkline plot",
+                          "name": "points",
+                          "default": 200,
+                          "minimum": 50,
+                          "maximum": 600
+                        },
+                        "min": {
+                          "id": "http://jsonschema.net/signalk/config/environment/depth/meta/sparkline/min",
+                          "type": "number",
+                          "additionalProperties": false,
+                          "title": "Minimum.",
+                          "description": "Minimum value for depth sparkline plot",
+                          "name": "min",
+                          "default": 0.0,
+                          "minimum": 0.0
+                        }
+                      }
                     }
                   }
                 }
@@ -1364,7 +1396,7 @@
           "additionalProperties": false,
           "title": "Propulsion",
           "name": "propulsion",
-          "format": "table",
+          "format": "grid",
           "properties": {
             "engine": {
               "id": "http://jsonschema.net/signalk/config/propulsion/engine",
